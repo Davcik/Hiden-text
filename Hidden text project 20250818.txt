@@ -1,0 +1,56 @@
+Hidden text project 20250708
+
+
+Python code
+
+-- You have to change the local C:\ path --
+
+A)
+
+/* Check for White Text (Not 'Hidden')
+If the document uses white text on a white background (visually hidden but not machine-hidden), use this code instead: */
+
+from docx import Document
+from docx.shared import RGBColor
+
+docx = Document(r"C:\Users\USER\Desktop\YOURFILE.docx")
+
+white_texts = []
+
+for para in docx.paragraphs:
+    for run in para.runs:
+        color = run.font.color.rgb
+        if color == RGBColor(255, 255, 255):  # Pure white
+            if run.text.strip():
+                white_texts.append(run.text.strip())
+
+white_texts
+
+
+B)
+
+
+from docx import Document
+docx = Document(r"C:\Users\USER\Desktop\YOURFILE.docx")
+for para in docx.paragraphs:
+    for run in para.runs:
+        if run.font.hidden:
+            print("Hidden text:", run.text)
+
+ 
+C)
+
+
+from docx import Document
+
+docx = Document(r"C:\Users\USER\Desktop\YOURFILE.docx")
+
+has_hidden = False
+
+for para in docx.paragraphs:
+    for run in para.runs:
+        print(f"Text: '{run.text}' | Hidden: {run.font.hidden}")
+        if run.font.hidden:
+            has_hidden = True
+
+print("Any hidden text found?", has_hidden)
