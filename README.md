@@ -1,2 +1,3 @@
 # Hiden-text
-Repository for research on hidden text in documents. Python code.
+Repository for research on hidden text in documents. 
+I have used the Python code.
